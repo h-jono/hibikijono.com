@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on hibikijono.com</title>
+    <link>http://hibikijono.com/categories/development/</link>
+    <description>Recent content in Development on hibikijono.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Copyright 2021, Hibiki Jono</copyright>
+    <lastBuildDate>Sat, 06 Feb 2021 13:47:14 +0900</lastBuildDate><atom:link href="http://hibikijono.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugoで静的サイトを生成して、AWSでホストした</title>
+      <link>http://hibikijono.com/post/2021/generate_a_site_with_hugo_and_host_it_on_s3_and_cloudfront/</link>
+      <pubDate>Sat, 06 Feb 2021 13:47:14 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/post/2021/generate_a_site_with_hugo_and_host_it_on_s3_and_cloudfront/</guid>
+      <description>静的サイトジェネレーターであるHugoでこのサイトを生成し、AWSでホスティングしてみました。 やったこと Hugoでサイト生成 Route53で</description>
+    </item>
+    
+    <item>
+      <title>オブジェクトの生涯</title>
+      <link>http://hibikijono.com/post/2021/lifetime_of_an_object/</link>
+      <pubDate>Wed, 03 Feb 2021 16:39:45 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/post/2021/lifetime_of_an_object/</guid>
+      <description>この記事は、親切すぎるiPhoneアプリ開発の本 という本の序盤の「オブジェクトの生涯」というトピックで説明されていた内容です。 iOSアプリ開</description>
+    </item>
+    
+  </channel>
+</rss>

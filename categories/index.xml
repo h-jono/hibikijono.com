@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on hibikijono.com</title>
+    <link>http://hibikijono.com/categories/</link>
+    <description>Recent content in Categories on hibikijono.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Copyright 2021, Hibiki Jono</copyright>
+    <lastBuildDate>Sat, 06 Feb 2021 13:47:14 +0900</lastBuildDate><atom:link href="http://hibikijono.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Development</title>
+      <link>http://hibikijono.com/categories/development/</link>
+      <pubDate>Sat, 06 Feb 2021 13:47:14 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/categories/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Music</title>
+      <link>http://hibikijono.com/categories/music/</link>
+      <pubDate>Tue, 02 Feb 2021 02:35:39 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/categories/music/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

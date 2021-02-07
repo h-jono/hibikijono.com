@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en"><head>
+    <title>オブジェクトの生涯</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../../css/theme.min.css">
+
+    
+    
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        src="../../../images/avatar.png"
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../../" class="text-decoration-none">
+                    
+                        
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    当サイトは、城野響が音楽やiOS開発についての記事を公開する場です。
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../about/" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../post/" title="Posts">Posts</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../../categories/" title="Categories">Categories</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="http://github.com/h-jono" target="_blank">
+                            <i class="fab fa-github fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="" target="_blank">
+                            <i class="fab fa-linkedin-in fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="https://www.instagram.com/peejomni/?hl=en" target="_blank">
+                            <i class="fab fa-instagram fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="mailto:jomni.beats@gmail.com" target="_blank">
+                            <i class="fas fa-at fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+    <div class="pl-sm-2">
+        <div class="mb-3">
+            <h3 class="mb-0">オブジェクトの生涯</h3>
+            
+            <small class="text-muted">Published February 3, 2021</small>
+        </div>
+
+        <article>
+            <p>この記事は、<a href="https://www.amazon.co.jp/%E8%A6%AA%E5%88%87%E3%81%99%E3%81%8E%E3%82%8BiPhone%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AE%E6%9C%AC-%E5%9C%8B%E5%B1%85%E8%B2%B4%E6%B5%A9-ebook/dp/B0177E99MQ">親切すぎるiPhoneアプリ開発の本</a> という本の序盤の「オブジェクトの生涯」というトピックで説明されていた内容です。</p>
+<p>iOSアプリ開発の入門書ではあまり見られない内容だったので、自分なりに忘備録としてまとめます。 </p>
+<h4 id="auto-reference-counting">Auto Reference Counting</h4>
+<p>通常、ARCという仕組みのおかげで、基本的にはオブジェクトの破棄をプログラマが気にする必要はない。</p>
+<p>ARCとは、Auto Reference Countingの略である。</p>
+<p>オブジェクトが誰からも参照されなくなった時点で、自動的にメモリから破棄される仕組みである。</p>
+<p>では、「オブジェクトが誰からも参照されなくなる時点」とはいつなのか？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">attack</span>() {
+    <span style="color:#66d9ef">let</span> slime = Monster(name: <span style="color:#e6db74">&#34;スライム&#34;</span>)
+    print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>slime<span style="color:#e6db74">)</span><span style="color:#e6db74">は攻撃した&#34;</span>)
+} <span style="color:#75715e">// slimeはここで消える</span>
+
+attack() <span style="color:#75715e">// 関数呼び出し</span>
+</code></pre></div><p>この場合、attack関数から戻る時が、attack関数内で作成されたMonsterが「誰からも参照されなくなる時点」。</p>
+<p>関数の中で用意した定数slimeは、関数から戻る時にメモリから消える。(Monsterへの参照はなくなる)</p>
+<h4 id="arcが参照の数をカウント">ARCが参照の数をカウント</h4>
+<p>ARCは、この過程をチェックしている。</p>
+<p>オブジェクトに対する参照がなくなった時点でオブジェクトを破棄する。</p>
+<p>では、attack関数内で作成されたMonsterインスタンスを、関数の外で生存させたい場合はどうするのか？</p>
+<p>→戻り値としてMonsterインスタンスの参照値を受け取る必要がある。 </p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">attack</span>() -&gt; Monster {
+    <span style="color:#66d9ef">let</span> slime = Monster(name: <span style="color:#e6db74">&#34;スライム&#34;</span>)
+    print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>slime<span style="color:#e6db74">)</span><span style="color:#e6db74">は攻撃した&#34;</span>)
+    
+    <span style="color:#66d9ef">return</span> slime <span style="color:#75715e">// 参照値を戻す</span>
+}
+
+<span style="color:#66d9ef">let</span> anotherSlime = attack() <span style="color:#75715e">// 関数内で作成したMonsterの参照値を受け取る</span>
+</code></pre></div><p>関数の終わりでslimeは消滅するが、参照値が戻り値として返され、新しくanotherSlimeによって参照される。</p>
+<h4 id="デイニシャライザ">デイニシャライザ</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monster</span> {
+    <span style="color:#66d9ef">var</span> name: String
+    <span style="color:#66d9ef">init</span>(name: String) {
+        <span style="color:#66d9ef">self</span>.name = name
+        print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span><span style="color:#66d9ef">self</span>.name<span style="color:#e6db74">)</span><span style="color:#e6db74">はメモリに確保されました&#34;</span>)
+    }
+    
+    <span style="color:#66d9ef">deinit</span> {
+        print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span><span style="color:#66d9ef">self</span>.name<span style="color:#e6db74">)</span><span style="color:#e6db74">はメモリから消えます&#34;</span>)
+    }
+}
+</code></pre></div><p>デイニシャライザは、オブジェクトの破棄時に一度だけ呼ばれる処理である。</p>
+<p>オブジェクトがメモリから消失する時に、オブジェクトに関係したなんらかの処理をしたい時に利用できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> x: Monster! = Monster(name: <span style="color:#e6db74">&#34;スライムx&#34;</span>) <span style="color:#75715e">// オブジェクト生成しに、xに参照を設定 *ここでは便宜上強制アンラップ</span>
+x = <span style="color:#66d9ef">nil</span> <span style="color:#75715e">// xにnilを代入し、参照を解除(deinitが呼ばれる)</span>
+</code></pre></div><p>コンソール</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">スライムxはメモリに確保されました
+スライムxはメモリから消えます
+x <span style="color:#f92672">=</span> nil
+</code></pre></div><p>x = nil によって参照値がなくなり、それを検知したARCが、作成されたスライムxオブジェクトを破棄している。</p>
+<p>このように、参照を意図的になくすことでオブジェクトを破棄することも可能である。</p>
+<h4 id="オブジェクトの生涯">オブジェクトの生涯</h4>
+<p>オブジェクトの生涯を順を追って確認してみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monster</span> {
+    <span style="color:#75715e">// 省略</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">createMonster</span>() {
+    <span style="color:#66d9ef">let</span> y = Monster(name: <span style="color:#e6db74">&#34;スライムy&#34;</span>) <span style="color:#75715e">// ②</span>
+    print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>y.name<span style="color:#e6db74">)</span><span style="color:#e6db74">をxが参照&#34;</span>) <span style="color:#75715e">// ③</span>
+} <span style="color:#75715e">// ④</span>
+
+createMonster() <span style="color:#75715e">// ①</span>
+print(<span style="color:#e6db74">&#34;createMonster()から戻ってきました。&#34;</span>)
+</code></pre></div><ul>
+<li>① createMonster関数呼び出し</li>
+<li>② 関数内でMonsterオブジェクト作成、参照</li>
+<li>③ 関数内のprint実行</li>
+<li>④ 関数から戻る時に、deinit実行</li>
+</ul>
+<p>コンソール</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">スライムyはメモリに確保されました
+スライムyをxが参照
+スライムyはメモリから消えます
+createPerson<span style="color:#f92672">()</span>から戻ってきました。
+</code></pre></div><p>createMonster関数から戻ることで、createMonster関数内の定数yが消える。</p>
+<p>結果として参照が無くなり、オブジェクトも消える。</p>
+<h4 id="循環参照">循環参照</h4>
+<p>異なるオブジェクトを参照しあう状態を「循環参照」と呼ぶ.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monster</span> {
+    
+    <span style="color:#66d9ef">var</span> friend: Monster! <span style="color:#75715e">// 別のMonsterを結びつける</span>
+    <span style="color:#75715e">// 省略</span>
+}
+
+<span style="color:#66d9ef">var</span> a: Monster! = Monster(name: <span style="color:#e6db74">&#34;ゴーレムA&#34;</span>)
+<span style="color:#66d9ef">var</span> b: Monster! = Monster(name: <span style="color:#e6db74">&#34;ゴーレムB&#34;</span>)
+
+a.friend = b
+b.friend = a
+
+a = <span style="color:#66d9ef">nil</span>
+b = <span style="color:#66d9ef">nil</span>
+</code></pre></div><p>コンソール </p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ゴーレムAはメモリに確保されました
+ゴーレムBはメモリに確保されました
+</code></pre></div><p>最後にnilを設定しているにもかかわらず、&quot;・・・はメモリから消えます&quot;は出力されていない。</p>
+<p>この理由は、オブジェクト間で循環した参照状態によるものである。</p>
+<p>流れは以下の通り。</p>
+<ol>
+<li>
+<p>aをnilにして、ゴーレムAオブジェクトへの参照を消しても、ゴーレムBオブジェクトからのfriendによる参照が残る</p>
+</li>
+<li>
+<p>ゴーレムAはメモリにとどまる</p>
+</li>
+<li>
+<p>その後のbへのnilの設定でも同様のことが起こっている</p>
+</li>
+<li>
+<p>つまり、ゴーレムAオブジェクトもゴーレムBオブジェクトもメモリ上に残っている</p>
+</li>
+</ol>
+<p>これが循環参照という問題である。</p>
+<h5 id="解決策">解決策</h5>
+<p>①</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">a.friend = b
+b.friend = a
+b.friend = <span style="color:#66d9ef">nil</span> <span style="color:#75715e">// bのfriendプロパティにnilを代入</span>
+a = <span style="color:#66d9ef">nil</span>
+b = <span style="color:#66d9ef">nil</span>
+</code></pre></div><p>②</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">a.friend = b
+b.friend = a
+a.friend = <span style="color:#66d9ef">nil</span> <span style="color:#75715e">// aのfriendプロパティにnilを代入</span>
+a = <span style="color:#66d9ef">nil</span>
+b = <span style="color:#66d9ef">nil</span>
+</code></pre></div><p>しかしこれでは手間なので、weakキーワードを使った解決策がある。</p>
+<h4 id="weakキーワード">weakキーワード</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monster</span> {
+    
+    <span style="color:#66d9ef">weak</span> <span style="color:#66d9ef">var</span> friend: Monster! <span style="color:#75715e">// weakキーワードを追加</span>
+    <span style="color:#75715e">// 省略</span>
+}
+</code></pre></div><p>weakキーワードはARCに対して、「このオブジェクト参照用のプロパティは、参照している数にはカウントしない」という制限を伝えるものである。
+ 
+その結果、aをnilにした時点でゴーレムAオブジェクトへの参照者は0になる。</p>
+<p>したがってゴーレムAオブジェクトは破棄される。</p>
+<p>また、ゴーレムAオブジェクトの破棄と同時に、ゴーレムB側のweak指定されたfriendプロパティにはnilが設定される。</p>
+<p>これもweak指定の特徴である。</p>
+<h4 id="まとめ">まとめ</h4>
+<p>プログラムが大きくなり、オブジェクトが複雑に絡み合う状況ではこのような知識も必要になると考えられる。 </p>
+<h4 id="参考">参考</h4>
+<p>この記事は以下の本の情報を参考にして執筆しました。</p>
+<ul>
+<li><a href="https://www.amazon.co.jp/%E8%A6%AA%E5%88%87%E3%81%99%E3%81%8E%E3%82%8BiPhone%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AE%E6%9C%AC-%E5%9C%8B%E5%B1%85%E8%B2%B4%E6%B5%A9-ebook/dp/B0177E99MQ">親切すぎるiPhoneアプリ開発の本</a></li>
+</ul>
+
+        </article>
+    </div>
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        
+            &copy; Copyright 2021, Hibiki Jono
+        
+        <br>
+        Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        and <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+    </small>
+</footer>
+</body>
+</html>

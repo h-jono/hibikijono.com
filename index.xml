@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hibikijono.com</title>
+    <link>http://hibikijono.com/</link>
+    <description>Recent content on hibikijono.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Copyright 2021, Hibiki Jono</copyright>
+    <lastBuildDate>Sat, 06 Feb 2021 13:47:14 +0900</lastBuildDate><atom:link href="http://hibikijono.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugoで静的サイトを生成して、AWSでホストした</title>
+      <link>http://hibikijono.com/post/2021/generate_a_site_with_hugo_and_host_it_on_s3_and_cloudfront/</link>
+      <pubDate>Sat, 06 Feb 2021 13:47:14 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/post/2021/generate_a_site_with_hugo_and_host_it_on_s3_and_cloudfront/</guid>
+      <description>静的サイトジェネレーターであるHugoでこのサイトを生成し、AWSでホスティングしてみました。 やったこと Hugoでサイト生成 Route53で</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://hibikijono.com/about/</link>
+      <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://hibikijono.com/about/</guid>
+      <description>略歴 同志社大学英文学科を卒業後、国際物流企業に勤務。 その傍ら、都内のクラブを中心に電子音楽ユニットとして活動。 iOSアプリ開発への興味から、</description>
+    </item>
+    
+    <item>
+      <title>オブジェクトの生涯</title>
+      <link>http://hibikijono.com/post/2021/lifetime_of_an_object/</link>
+      <pubDate>Wed, 03 Feb 2021 16:39:45 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/post/2021/lifetime_of_an_object/</guid>
+      <description>この記事は、親切すぎるiPhoneアプリ開発の本 という本の序盤の「オブジェクトの生涯」というトピックで説明されていた内容です。 iOSアプリ開</description>
+    </item>
+    
+    <item>
+      <title>Ableton Live 11の新機能を見ておもったこと</title>
+      <link>http://hibikijono.com/post/2021/what_i_thought_of_new_features_in_abletonlive11/</link>
+      <pubDate>Tue, 02 Feb 2021 02:35:39 +0900</pubDate>
+      
+      <guid>http://hibikijono.com/post/2021/what_i_thought_of_new_features_in_abletonlive11/</guid>
+      <description>先日、Ableton Live 11のリリースが発表された。主な新機能の一つに、ノートの発音率やベロシティの変化率の設定を可能にするものがある。これま</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://hibikijono.com/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://hibikijono.com/archives/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

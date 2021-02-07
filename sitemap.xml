@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://hibikijono.com/</loc>
+    <lastmod>2021-02-06T13:47:14+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/categories/</loc>
+    <lastmod>2021-02-06T13:47:14+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/categories/development/</loc>
+    <lastmod>2021-02-06T13:47:14+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/post/2021/generate_a_site_with_hugo_and_host_it_on_s3_and_cloudfront/</loc>
+    <lastmod>2021-02-06T13:47:14+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/post/</loc>
+    <lastmod>2021-02-06T13:47:14+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/about/</loc>
+    <lastmod>2021-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/post/2021/lifetime_of_an_object/</loc>
+    <lastmod>2021-02-03T16:39:45+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/post/2021/what_i_thought_of_new_features_in_abletonlive11/</loc>
+    <lastmod>2021-02-02T02:35:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/categories/music/</loc>
+    <lastmod>2021-02-02T02:35:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/archives/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hibikijono.com/tags/</loc>
+  </url>
+  
+</urlset>
